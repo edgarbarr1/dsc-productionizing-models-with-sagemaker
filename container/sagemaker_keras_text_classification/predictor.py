@@ -18,7 +18,6 @@ from __future__ import print_function
 
 import os
 import json
-import pickle
 import StringIO
 import sys
 import signal
@@ -31,13 +30,14 @@ import pandas as pd
 import numpy as np
 from tensorflow.python.keras.preprocessing.text import Tokenizer
 from tensorflow.python.keras.preprocessing.sequence import pad_sequences
+import fickling
 
 MAX_LEN = 100
 label_index = {'Business':0,'Science & Technology':1,'Entertainment':2,'Health & Medicine':3}
 prefix = '/opt/ml/'
 model_path = os.path.join(prefix, 'model')
 with open(os.path.join(model_path,'tokenizer.pickle'), 'rb') as handle:
-    tokenizer = pickle.load(handle)
+    tokenizer = fickling.load(handle)
 
 def get_class_label(prediction):
   for key, value in label_index.iteritems():
